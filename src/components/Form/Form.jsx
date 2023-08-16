@@ -4,29 +4,62 @@ import './Form.scss'
 export default function Form({handleApiCall}) {
   const [requestParams, setRequestParams] = useState({
     url: null,
-    method: null
+    method: null,
+    body: null
   })
+  const [selected, setSetelected] = useState("")
   const handleChange = (event) => {
     const {name, value} = event.target
     setRequestParams(oldParams => ({...oldParams, [name]: value}))
   }
-  const onSubmit = async (event) => {
+  const handleMethod = (event) => {
     event.preventDefault()
-    const {name, value} = event.target
-    setRequestParams(oldParams => ({...oldParams, [name]: value}))
-    handleApiCall({...requestParams, [name]: value})
+    const {value} = event.target
+    setRequestParams(oldParams => ({...oldParams, method: value}))
+    setSetelected(value)
+  }
+  const handleSumbit = (event) => {
+    event.preventDefault()
+    handleApiCall(requestParams)
   }
   return (
     <form>
-      <div className='url-input'>
-        <label htmlFor='url'>URL:</label>
-        <input type="text" name="url" onChange={handleChange}/>
+      <div className='inputs-container'>
+        <div className='url-input'>
+          <label htmlFor='url'>URL:</label>
+          <input data-testid="url" type="text" name="url" onChange={handleChange} value={requestParams.url}/>
+        </div>
+        <div className='json-input'>
+          <label htmlFor='body'>JSON:</label>
+          <textarea data-testid="body" rows="15" name="body" onChange={handleChange} value={requestParams.body}/>
+        </div>
       </div>
-      <div className='buttons-container'>
-        <button name='method' onClick={onSubmit} value="GET">GET</button>
-        <button name='method' onClick={onSubmit} value="POST">POST</button>
-        <button name='method' onClick={onSubmit} value="PUT">PUT</button>
-        <button name='method' onClick={onSubmit} value="DELETE">DELETE</button>
+      <div className='methods-container'>
+          <option 
+            className={selected === 'GET' ? 'selected' : ""}
+            value="GET" 
+            onClick={handleMethod}
+            data-testid="GET"
+            >GET</option>
+          <option 
+            className={selected === 'POST' ? 'selected' : ""}
+            value="POST" 
+            onClick={handleMethod}
+            data-testid="POST"
+            >POST</option>
+          <option 
+            className={selected === 'PUT' ? 'selected' : ""}
+            value="PUT" 
+            onClick={handleMethod}
+            data-testid="PUT"
+            >PUT</option>
+          <option
+            className={selected === 'DELETE' ? 'selected' : ""}
+            value="DELETE" 
+            onClick={handleMethod}
+            data-testid="DELETE"
+            >DELETE</option>
+        <button onClick={handleSumbit} data-testid="fetch-button">Go!</button>
       </div>
     </form>
   )

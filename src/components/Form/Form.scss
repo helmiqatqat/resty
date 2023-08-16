@@ -2,12 +2,41 @@ form {
   display: flex;
   flex-flow: column;
   gap: 10px;
-  .url-input {
+  padding: 10px;
+  .inputs-container {
     display: flex;
+    flex-flow: column;
+    gap: 20px;
     gap: 5px;
+    input {
+      width: 100%
+    }
+    .json-input {
+      display: flex;
+      flex-flow: column;
+      textarea {
+        min-height: fit-content;
+        overflow-y:visible;
+        max-height: 500px;
+      }
+    }
   }
-  .buttons-container {
+  .methods-container {
     display: flex;
+    align-items: center;
     gap: 5px;
-  }
+      option {
+        padding: 5px;
+        &:hover {
+          cursor: pointer;  
+        }
+        &.selected {
+          background-color: rgb(39, 76, 177);
+          color: white;
+        }
+      }
+    }
+   button {
+    height: 30px;
+   }
 }
