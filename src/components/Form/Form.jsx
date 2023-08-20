@@ -1,13 +1,7 @@
-import { useState } from 'react'
 import './Form.scss'
 
-export default function Form({handleApiCall}) {
-  const [requestParams, setRequestParams] = useState({
-    url: null,
-    method: null,
-    body: null
-  })
-  const [selected, setSetelected] = useState("")
+export default function Form({handleApiCall, selected, setSetelected, requestParams, setRequestParams}) {
+
   const handleChange = (event) => {
     const {name, value} = event.target
     setRequestParams(oldParams => ({...oldParams, [name]: value}))

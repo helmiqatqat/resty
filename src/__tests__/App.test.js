@@ -4,7 +4,7 @@ import Results from '../components/Results/Results';
 import Form from '../components/Form/Form';
 
 
-it('Test GET Method in form', () => {
+test('Test GET Method in form', () => {
   render(<Form />);
   render(<Results />)
   const url = screen.getByTestId('url')

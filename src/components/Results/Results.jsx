@@ -1,7 +1,10 @@
+import JSONPretty from 'react-json-pretty';
+import 'react-json-pretty/themes/monikai.css';
+
 export default function Results({data}) {
   return (
     <div data-testid ='results'>
-      <pre>{data && JSON.stringify(data, null, 2)}</pre>
+    {data && <JSONPretty id="json-pretty" data={data}/>}
     </div>
   )
 }
