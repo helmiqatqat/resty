@@ -3,7 +3,6 @@ import App from '../App';
 import Results from '../components/Results/Results';
 import Form from '../components/Form/Form';
 
-
 test('Test GET Method in form', () => {
   render(<Form />);
   render(<Results />)
